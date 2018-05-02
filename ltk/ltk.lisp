@@ -495,7 +495,7 @@ toplevel             x
 		 proc
 		 )
     #+:ecl(ext:run-program program args :input :stream :output :stream
-:error :output)
+:error :output :wait wt)
     #+:openmcl (let ((proc (ccl:run-program program args :input
 					    :stream :output :stream :wait wt)))
 		 (unless proc
@@ -2415,7 +2415,7 @@ a list of numbers may be given"
 
 (defgeneric notebook-enable-traversal (nb))
 (defmethod notebook-enable-traversal ((nb notebook))
-  (format-wish "ttk::notebook::enableTraversal ~a" nb))
+  (format-wish "ttk::notebook::enableTraversal ~a" (widget-path nb)))
 
 ;; notebook-state
 ;; notebook-tabs
