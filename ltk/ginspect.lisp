@@ -252,8 +252,7 @@
 	  (inspected-standard-object-elements object)))
 #+:sbcl
 (defmethod inspected-parts ((object function))
-  (let* ((type (sb-kernel:widetag-of object))
-	 (object (if (= type sb-vm:closure-header-widetag)
+  (let ((object (if (sb-kernel:closurep object)
 		     (sb-kernel:%closure-fun object)
 		     object)))
     (values (format nil "FUNCTION ~S.~@[~%Argument List: ~A~]." object
